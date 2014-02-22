@@ -38,6 +38,7 @@ import jp.ddo.dekuyou.android.util.Log;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -323,4 +324,22 @@ public class SurrExtensionService extends ExtensionService {
     protected boolean keepRunningWhenConnected() {
         return false;
     }
+    
+    
+    /**
+     * @param context
+     */
+    public static void startAlarm(Context context) {
+		// 
+		PendingIntent pendingIntent = PendingIntent.getService(context, 0,
+		        new Intent(context, SurrExtensionService.class),
+		        PendingIntent.FLAG_UPDATE_CURRENT);
+		 
+		// 5分毎
+		AlarmManager am = (AlarmManager) context
+		        .getSystemService(Context.ALARM_SERVICE);
+		am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+		        SystemClock.elapsedRealtime(), 1000 * 60 * 5 , pendingIntent);
+    }
+    
 }
