@@ -327,6 +327,7 @@ public class SurrExtensionService extends ExtensionService {
     
     
     /**
+     * Surr Timer
      * @param context
      */
     public static void startAlarm(Context context) {
