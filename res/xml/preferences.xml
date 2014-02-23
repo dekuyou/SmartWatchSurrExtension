@@ -8,7 +8,7 @@
     <!-- Active -->
     <CheckBoxPreference
         android:key="@string/preference_key_is_active"
-        android:title="@string/preference_option_is_active" />
+        android:title="@string/preference_option_is_active" android:selectable="true" android:enabled="true" android:defaultValue="true"/>
     <!-- Clear events -->
     <Preference
         android:key="@string/preference_key_clear"

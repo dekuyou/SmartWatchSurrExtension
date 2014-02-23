@@ -32,13 +32,13 @@ Copyright (c) 2011-2013, Sony Mobile Communications AB
 
 package jp.ddo.dekuyou.liveware.extension.surr.free;
 
+import java.util.Date;
 import java.util.Random;
 
 import jp.ddo.dekuyou.android.util.Log;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -80,20 +80,20 @@ public class SurrExtensionService extends ExtensionService {
      * Event names
      */
     private static final String[] NAMES = new String[] {
-            "Name A", "Name B", "Name C", "Name D", "Name D", "Name E",
+            "Surr", 
     };
 
     /**
      * Event messages
      */
     private static final String[] MESSAGE = new String[] {
-            "Message 1", "Message 2", "Message 3", "Message 4", "Message 5", "Message 6",
+            "perception of 5 minutes.",
     };
 
     /**
      * Time between new data insertion
      */
-    private static final long INTERVAL = 10 * 1000;
+    private static final long INTERVAL = 1000 * 60 * 5;
 
     /**
      * Starts periodic insert of data handled in onStartCommand()
@@ -191,9 +191,11 @@ public class SurrExtensionService extends ExtensionService {
      */
     private void addData() {
         Random rand = new Random();
-        int index = rand.nextInt(5);
-        String name = NAMES[index];
-        String message = MESSAGE[index];
+        int indexNames = rand.nextInt(NAMES.length);
+        String name = NAMES[indexNames];
+        int indexMessages = rand.nextInt(MESSAGE.length);
+        Date nowDate = new Date();
+        String message = MESSAGE[indexMessages] + " - " +  nowDate.toLocaleString();
         long time = System.currentTimeMillis();
         long sourceId = NotificationUtil
                 .getSourceId(this, EXTENSION_SPECIFIC_ID);
@@ -324,23 +326,6 @@ public class SurrExtensionService extends ExtensionService {
     protected boolean keepRunningWhenConnected() {
         return false;
     }
-    
-    
-    /**
-     * Surr Timer
-     * @param context
-     */
-    public static void startAlarm(Context context) {
-		// 
-		PendingIntent pendingIntent = PendingIntent.getService(context, 0,
-		        new Intent(context, SurrExtensionService.class),
-		        PendingIntent.FLAG_UPDATE_CURRENT);
-		 
-		// 5分毎
-		AlarmManager am = (AlarmManager) context
-		        .getSystemService(Context.ALARM_SERVICE);
-		am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-		        SystemClock.elapsedRealtime(), 1000 * 60 * 5 , pendingIntent);
-    }
+  
     
 }

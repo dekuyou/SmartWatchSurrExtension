@@ -16,8 +16,6 @@ public class SurrReceiver extends BroadcastReceiver {
 			context.startService(new Intent(context, SurrExtensionService.class));
 		}
 		
-		// タイマーの登録
-		SurrExtensionService.startAlarm(context);
 	}
 
 }
