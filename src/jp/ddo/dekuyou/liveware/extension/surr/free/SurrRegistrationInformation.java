@@ -143,18 +143,18 @@ public class SurrRegistrationInformation extends RegistrationInformation {
         sourceValues.put(Notification.SourceColumns.EXTENSION_SPECIFIC_ID, extensionSpecificId);
         sourceValues.put(Notification.SourceColumns.PACKAGE_NAME, mContext.getPackageName());
         sourceValues.put(Notification.SourceColumns.TEXT_TO_SPEECH, textToSpeech);
-        sourceValues.put(Notification.SourceColumns.ACTION_1,
-                mContext.getString(R.string.action_event_1));
-        sourceValues.put(Notification.SourceColumns.ACTION_2,
-                mContext.getString(R.string.action_event_2));
-        sourceValues.put(Notification.SourceColumns.ACTION_3,
-                mContext.getString(R.string.action_event_3));
-        sourceValues.put(Notification.SourceColumns.ACTION_ICON_1,
-                ExtensionUtils.getUriString(mContext, R.drawable.actions_1));
-        sourceValues.put(Notification.SourceColumns.ACTION_ICON_2,
-                ExtensionUtils.getUriString(mContext, R.drawable.actions_2));
-        sourceValues.put(Notification.SourceColumns.ACTION_ICON_3,
-                ExtensionUtils.getUriString(mContext, R.drawable.actions_3));
+//        sourceValues.put(Notification.SourceColumns.ACTION_1,
+//                mContext.getString(R.string.action_event_1));
+//        sourceValues.put(Notification.SourceColumns.ACTION_2,
+//                mContext.getString(R.string.action_event_2));
+//        sourceValues.put(Notification.SourceColumns.ACTION_3,
+//                mContext.getString(R.string.action_event_3));
+//        sourceValues.put(Notification.SourceColumns.ACTION_ICON_1,
+//                ExtensionUtils.getUriString(mContext, R.drawable.actions_1));
+//        sourceValues.put(Notification.SourceColumns.ACTION_ICON_2,
+//                ExtensionUtils.getUriString(mContext, R.drawable.actions_2));
+//        sourceValues.put(Notification.SourceColumns.ACTION_ICON_3,
+//                ExtensionUtils.getUriString(mContext, R.drawable.actions_3));
         return sourceValues;
     }
 

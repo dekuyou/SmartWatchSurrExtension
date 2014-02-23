@@ -228,25 +228,25 @@ public class SurrExtensionService extends ExtensionService {
 
     @Override
     protected void onViewEvent(Intent intent) {
-        String action = intent.getStringExtra(Notification.Intents.EXTRA_ACTION);
-        String hostAppPackageName = intent
-                .getStringExtra(Registration.Intents.EXTRA_AHA_PACKAGE_NAME);
-        boolean advancedFeaturesSupported = DeviceInfoHelper.isSmartWatch2ApiAndScreenDetected(
-                this, hostAppPackageName);
-
-        int eventId = intent.getIntExtra(Notification.Intents.EXTRA_EVENT_ID, -1);
-        if (Notification.SourceColumns.ACTION_1.equals(action)) {
-            doAction1(eventId);
-        } else if (Notification.SourceColumns.ACTION_2.equals(action)) {
-            // Here we can take different actions depending on the device.
-            if (advancedFeaturesSupported) {
-                Toast.makeText(this, "Action 2 API level 2", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, "Action 2", Toast.LENGTH_LONG).show();
-            }
-        } else if (Notification.SourceColumns.ACTION_3.equals(action)) {
-            Toast.makeText(this, "Action 3", Toast.LENGTH_LONG).show();
-        }
+//        String action = intent.getStringExtra(Notification.Intents.EXTRA_ACTION);
+//        String hostAppPackageName = intent
+//                .getStringExtra(Registration.Intents.EXTRA_AHA_PACKAGE_NAME);
+//        boolean advancedFeaturesSupported = DeviceInfoHelper.isSmartWatch2ApiAndScreenDetected(
+//                this, hostAppPackageName);
+//
+//        int eventId = intent.getIntExtra(Notification.Intents.EXTRA_EVENT_ID, -1);
+//        if (Notification.SourceColumns.ACTION_1.equals(action)) {
+//            doAction1(eventId);
+//        } else if (Notification.SourceColumns.ACTION_2.equals(action)) {
+//            // Here we can take different actions depending on the device.
+//            if (advancedFeaturesSupported) {
+//                Toast.makeText(this, "Action 2 API level 2", Toast.LENGTH_LONG).show();
+//            } else {
+//                Toast.makeText(this, "Action 2", Toast.LENGTH_LONG).show();
+//            }
+//        } else if (Notification.SourceColumns.ACTION_3.equals(action)) {
+//            Toast.makeText(this, "Action 3", Toast.LENGTH_LONG).show();
+//        }
     }
 
     @Override
@@ -260,36 +260,36 @@ public class SurrExtensionService extends ExtensionService {
      *
      * @param eventId The event id
      */
-    public void doAction1(int eventId) {
-        Log.d(LOG_TAG, "doAction1 event id: " + eventId);
-        Cursor cursor = null;
-        try {
-            String name = "";
-            String message = "";
-            cursor = getContentResolver().query(Notification.Event.URI, null,
-                    Notification.EventColumns._ID + " = " + eventId, null, null);
-            if (cursor != null && cursor.moveToFirst()) {
-                int nameIndex = cursor.getColumnIndex(Notification.EventColumns.DISPLAY_NAME);
-                int messageIndex = cursor.getColumnIndex(Notification.EventColumns.MESSAGE);
-                name = cursor.getString(nameIndex);
-                message = cursor.getString(messageIndex);
-            }
-
-            String toastMessage = getText(R.string.action_event_1) + ", Event: " + eventId
-                    + ", Name: " + name + ", Message: " + message;
-            Toast.makeText(this, toastMessage, Toast.LENGTH_LONG).show();
-        } catch (SQLException e) {
-            Log.e(LOG_TAG, "Failed to query event", e);
-        } catch (SecurityException e) {
-            Log.e(LOG_TAG, "Failed to query event", e);
-        } catch (IllegalArgumentException e) {
-            Log.e(LOG_TAG, "Failed to query event", e);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
-    }
+//    public void doAction1(int eventId) {
+//        Log.d(LOG_TAG, "doAction1 event id: " + eventId);
+//        Cursor cursor = null;
+//        try {
+//            String name = "";
+//            String message = "";
+//            cursor = getContentResolver().query(Notification.Event.URI, null,
+//                    Notification.EventColumns._ID + " = " + eventId, null, null);
+//            if (cursor != null && cursor.moveToFirst()) {
+//                int nameIndex = cursor.getColumnIndex(Notification.EventColumns.DISPLAY_NAME);
+//                int messageIndex = cursor.getColumnIndex(Notification.EventColumns.MESSAGE);
+//                name = cursor.getString(nameIndex);
+//                message = cursor.getString(messageIndex);
+//            }
+//
+//            String toastMessage = getText(R.string.action_event_1) + ", Event: " + eventId
+//                    + ", Name: " + name + ", Message: " + message;
+//            Toast.makeText(this, toastMessage, Toast.LENGTH_LONG).show();
+//        } catch (SQLException e) {
+//            Log.e(LOG_TAG, "Failed to query event", e);
+//        } catch (SecurityException e) {
+//            Log.e(LOG_TAG, "Failed to query event", e);
+//        } catch (IllegalArgumentException e) {
+//            Log.e(LOG_TAG, "Failed to query event", e);
+//        } finally {
+//            if (cursor != null) {
+//                cursor.close();
+//            }
+//        }
+//    }
 
     /**
      * Called when extension and sources has been successfully registered.
