@@ -146,6 +146,9 @@ public class SurrExtensionService extends ExtensionService {
                 Log.d(LOG_TAG, "onStart action: INTENT_ACTION_ADD");
                 addData();
                 stopSelfCheck();
+            } else {
+                startAddData();
+                stopSelfCheck();
             }
         }
 
